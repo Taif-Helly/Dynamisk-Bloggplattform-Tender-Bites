@@ -1,5 +1,4 @@
 const submitSpace = document.createElement("div")
-
 submitSpace.className = "submit-spacen"
 document.body.appendChild(submitSpace)
 
@@ -7,7 +6,7 @@ document.body.appendChild(submitSpace)
 const fields = [
     {label: "Author Name", id:"Name", placeholder:"Your Name"},
     {label:"Title", id: "DishName", placeholder: "Name of the Dish"},
-    {label: "Describtion", id:"DishDescribtion", placeholder:"Write down the details.."}
+    {label: "Description", id:"DishDescription", placeholder:"Write down the details.."}
 ]
 
 //Loop genom array och skapa element
@@ -39,27 +38,29 @@ submitbutton.addEventListener("click", () => {
 const data= {};
 for (const field of fields){
 const input = document.getElementById(field.id)
-data[field.id]=input.value //den måste ja kolla upp
+data[field.id]=input.value;                             //den måste ja kolla upp
 
 }
-console.log("all values", data)
+//Skapa en contianer för den här submitten 
+const resultCont = document.createElement("div");
+resultCont.className = "result-container";
 
-//knappen ska printa ut
-
-const list = document.createElement("ul");
 Object.entries(data).forEach(([key, val]) => {
-  const li = document.createElement("li");
-  li.textContent = `${key}: ${val}`;
-  list.appendChild(li);
+  const container = document.createElement("div");
+  container.className= "result-container";
+  container.textContent = `${key}: ${val}`;
+  resultCont.appendChild(container);
 });
-submitSpace.appendChild(list);
-
-})
 
 
-// const user = document.getElementById("").value 
-// console.log("Name",user)
+//removeBTN
+const RemoveBtn = document.createElement("button")
+RemoveBtn.textContent = "Remove"
+RemoveBtn.className = "removeBtn"
+RemoveBtn.addEventListener("click", () => {
+    resultCont.remove(); // <-- tar bort just den här containern
+  });
+  resultCont.appendChild(RemoveBtn);
+  submitSpace.appendChild(resultCont);
+});
 
-
-
-// const date = new Date();  
