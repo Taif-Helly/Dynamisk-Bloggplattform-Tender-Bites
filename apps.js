@@ -54,7 +54,7 @@ resultCont.appendChild(dateEl);
  // Lägg till data
 Object.entries(data).forEach(([key, val]) => {
   const container = document.createElement("div");
-  container.className= "result-container";
+  container.className= "result-item";
   container.textContent = `${key}: ${val}`;
   resultCont.appendChild(container);
 });
