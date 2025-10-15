@@ -59,6 +59,61 @@ Object.entries(data).forEach(([key, val]) => {
   resultCont.appendChild(container);
 });
 
+// skapar kommentar fälten
+const comments = document.createElement("div");
+comments.className= "comments";
+
+const commentsTitle = document.createElement("div");
+commentsTitle.className= "comments-title";
+commentsTitle.textContent = "Comments";
+
+//listan där kommentarerna hamnar
+const commentList = document.createElement("div");
+commentList.className= "comment-list";
+
+const textarea = document.createElement("textarea");
+textarea.className="comment-input";
+textarea.rows = 3;
+textarea.placeholder = "Write a comment...";
+
+const addCommentBtn = document.createElement("button");
+addCommentBtn.className= "comment-add";
+addCommentBtn.textContent="Add comment";
+
+addCommentBtn.addEventListener("click",()=>{
+    const text=textarea.value.trim();
+    if(!text) return;
+
+
+//skapa rad för kommentars lådan
+const item = document.createElement("div");
+item.className= "comment-item";
+
+const stamp = new Date().toLocaleDateString('en-EN',{datastyle: 'short'});
+const content = document.createElement("span");
+content.textContent= `${text} (${stamp})`;
+
+//skapa en delet knapp
+const del = document.createElement("button");
+del.textContent="x";
+del.className="comment-del"
+del.title= "Delete";
+del.addEventListener("click", ()=> item.remove());
+
+//bygga ihop raderna
+item.appendChild(content);
+item.appendChild(del);
+commentList.appendChild(item);
+textarea.value= "";
+});
+
+comments.appendChild(commentsTitle);
+comments.appendChild(commentList);
+comments.appendChild(textarea);
+comments.appendChild(addCommentBtn);
+
+resultCont.appendChild(comments);
+
 
 //removeBTN
 const RemoveBtn = document.createElement("button")
