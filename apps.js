@@ -39,12 +39,19 @@ const data= {};
 for (const field of fields){
 const input = document.getElementById(field.id)
 data[field.id]=input.value;                             //den måste ja kolla upp
-
 }
 //Skapa en contianer för den här submitten 
 const resultCont = document.createElement("div");
 resultCont.className = "result-container";
 
+//  datum och tid
+const now = new Date();
+const dateEl = document.createElement("div");
+dateEl.className = "result-date";
+dateEl.textContent = `Published: ${now.toLocaleDateString('eng-EN')}`;
+resultCont.appendChild(dateEl);
+
+ // Lägg till data
 Object.entries(data).forEach(([key, val]) => {
   const container = document.createElement("div");
   container.className= "result-container";
